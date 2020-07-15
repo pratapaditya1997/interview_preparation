@@ -1,0 +1,70 @@
+1. polymorphism
+    poly(many) morphs(forms)
+    concept by which we can perform a single action in many different ways.
+    2 types of polymorphism - compile time and runtime. we can perform polymorphism in java by method overloading & overriding.
+
+    compile time - when we overload a static method, it is compile time polymorphism.
+
+    runtime polymorphism
+        process in which a call to overridden method is resolved at runtime rather than compile time.
+        upcasting - if the reference variable of parent class refers to the object of child class, it is known as upcasting
+        note - runtime polymorphism can not be achieved by data members. bcoz a method is overridden not the data members.
+
+        eg. class bike{
+            void run() { system.out.println("running");}
+        }
+        class splendor extends bike{
+            void run() {system.out.println("running splendor");}
+        }
+
+        public static void main(String[] args) {
+            bike b = new splendor(); // upcasting
+            b.run();
+        }
+
+2. inheritance
+    IS-A relationship
+    mechanism in which one object acquires all the properties and behaviors of a parent object. idea is to create new classes that are built upon existing classes. when we inherit, we can reuse methods and fields of the parent class.
+    ex. class SubClass extends SuperClass {}
+    meaning of 'extends' is to increase the functionality.
+    type of inheritance in java - single, multilevel, hierarchical.
+    note - multiple inheritance is not supported in java.
+
+3. encapsulation
+    process of wrapping code and data together into a single unit, as in a capsule which is mixed of several medicines. we can create a fully encapsulated class in java by making all the data members of the class as private.
+    data in class is hidden from other classes, so it is also known as data-hiding.
+    
+    advantages - we can have read-only or write only classes, provides control over the data, way to achieve data hiding, easy to test.
+
+4. abstraction
+    process of hiding the implementation details and showing only the functionality to the user. Lets you focus on WHAT an object does instead of HOW it does it.
+    ways to achieve abstraction - abstract class (0-100%) and interface(100%)
+
+    a) abstract class
+        must be declared with 'abstract' keyword.
+        can have abstract and non-abstract methods.
+        cannot be instantiated.
+        can have constructors and static methods also.
+        can have final methods too, which will force subclass not to change the body of the method.
+        if there is an abstract method in a class, that class must be abstract.
+        if we are extending an abstract class that has an abstract method, you must either provide the implementation of the method or make this class abstract.
+
+    b) interface
+        it has static constants and abstract methods.
+        cannot be instantiated.
+        since java8 we can have default and static methods in an interface.
+        since java9 we can have private methods in an interface.
+        we can supportt functionality of multiple inheritance using interfaces.
+        interface fields are public static final by default.
+        interface methods are public and abstract by default.
+        class 'implements' an interface.
+        interface 'extends' another interface.
+
+    Q - why is multiple inheritance not supported through classes in java, but it is possible by an interface?
+    A - multiple inheritance is not supported in the cases of class because of ambiguity of which implementation to use. However, there is no ambiguity in case of interface as the implementation is provided by the implementation class.
+
+    Q - What is marker or tagged interface?
+    A - an interface which has no member is known as marker interface. for eg. public interface Serializable {}. they are used to provide somee essential information to the JVM so that JVM may perform some useful operation.
+
+Q) What is the difference between encapsulation and abstraction ?
+abstraction lets you focus on what the object does instead of how it does it, while encapsulation means hiding the internal details of how an object works. when you keep internal working details private, you can change them later with some other better way.

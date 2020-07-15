@@ -1,0 +1,50 @@
+Binding refers to the link between method call and method definition.
+
+Static Binding
+binding which happens during compilation. It is also called 'early binding' because binding happens before a program actually runs.
+
+example:
+class A {
+    void method() {
+        System.out.println("From Class A");
+    }
+}
+
+class B extends A {
+    @Override
+    void method() {
+        System.out.println("From class B");
+    }
+}
+
+public class Binding {
+    public static void main(String args[]) {
+        A a1 = new A();
+        a1.method();
+        A a2 = new B();
+        a2.method();
+    }
+}
+
+here, a1 is reference variable of type class A pointing to object of class A, a2 is also reference variable of type class A but pointing to object of class B.
+during compilation, while binding, compiler doesnt check the type of object to which a reference variable is pointing. It just checks the type of reference variable through which a method is called and checks whether there exist a method definition for that in that type.
+a1.method() and a2.method() both bind to class A's method() here.
+
+Dynamic Binding
+binding which happens during run time. It is also called late binding because binding happens when program actually is running.
+during run time actual objects are used for binding, like a2.method() method of class B will be called.
+
+differences
+STATIC BINDING
+- happens at compile time
+- actual object is not used for binding, type of reference variable is used
+- called early binding
+- method overloading is the best example of static binding
+- private, static and final methods show static binding, because they cannot be overridden
+
+DYNAMIC BINDING
+- happens at run time
+- actual object is used for binding
+- called late binding
+- method overriding is the best example of dynamic binding
+- other than private, static and final methods show dynamic binding. because, they can be overridden.

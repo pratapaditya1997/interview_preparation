@@ -1,0 +1,13 @@
+without indexes, a DBMS has to go through all the records in the table in order to retrieve the desired results. This process is called table scanning and is extremely slow. However, if we create indexes, the database goes to that index first and then retrieves the corresponding table records directly.
+there are 2 types of indexes in SQL server: clustered and non-clustered
+
+1. Clustered Index
+defines the order in which data is physically stored in a table. table can be physically sorted in only 1 way, therefore, there can be only one clustered index per table. the primary key constraint automatically creates a clustered index on that particular column.
+We can create our own custom index as well as the default clustered index.
+
+2. Non-Clustered Index
+this index doesn't sort the physical data inside the table. In fact, a NC index is stored at one place and table data is stored in another place. we can have more than 1 NC indexes per table. The index contains the column values on which the index is created and the address of the record that the column value belongs to.
+If we query against this index, the DBMS will first go to the index and look for address of the corresponding row in the table. It will then go to that row address and fetch other values. Due to this additional step, NC indexes are bit slower than clustered indexes.
+
+very important point here - 
+In PostgreSQL, we dont have concept of clustered index. We can manually cluster(re-organise) a table along an index, but this will not be maintained by the DB automatically.

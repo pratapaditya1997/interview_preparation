@@ -1,0 +1,23 @@
+checked and unchecked exceptions are two types of exceptions that exist in java. 
+
+1. Checked Exception
+all those exceptions which require being catched during and handled during compile time. if compiler doesn't see try-catch block handling a checked exception, it throws compilation error.
+All the exceptions which are direct subclass of Exception but not inherit RuntimeException are checked exception.
+where to use checked exception - 
+    operations where chance of failure is more eg. IO Operation, Database Access or networking operation.
+    when you know what to do(ie. you have alternative) when an exception occurs, may be as part of business logic
+    checked exception is a reminder by compiler to programmer to handle failure scenario
+Some checked exceptions in java API
+    IOException
+    SQLException
+    ClassNotFoundException
+
+2. Unchecked Exception
+those exceptions whose handling is not verified during compile time. mostly arise due to programming errors like accessing method of a null object, accessing element outside an array boundary or invoking method with illegal arguments.
+In java, unchecked exception is direct subclass of Runtime exception.
+
+a good code practice - wrapping a checked exception into unchecked. since most of the database operation throws SQLException but it's not good to let SQLException propagate from your DAO layer to up to higher business layer and client code. so you can wrap SQLException in DAO layer and you can wrap the cause in a Runtime Exception to propagate through client code.
+Some unchecked exceptions in java API - 
+    NullPointerException
+    ArrayIndexOutOfBound
+    IllegalArgumentException

@@ -1,0 +1,6 @@
+Q) What is the difference between HTTP and HTTPS?
+- http is unsecured while https is secured
+- http sends data over port 80 while https uses port 443
+- http operates at application layer while https operates at transport layer
+- no ssl certificates are required for http, while https requires that you have an ssl (secure sockets layer) certificate and it is signed by a CA (certification authority)
+- http doesn't require domain validation, whereas https requires at least domain validation and certain certificates even require legal document validation

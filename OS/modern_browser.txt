@@ -1,0 +1,24 @@
+few basic things
+CPU - a single cpu core can handle many different tasks one by one as they come in. A core is like another cpu living in the same chip. in modern hardware, you often get more than one core, giving more computing power to your phones and laptops.
+GPU - gpu is good at handling simple tasks but across multiple cores at the same time. it was first developed to handle graphics. in recent years, more and more computation is becoming possible on gpu alone.
+
+Executing program on process and thread
+process can be described as an application's execution program. a thread is the one that lives inside of process and executes any part of its process's program.
+when you start an application, a process is created. the program might create threads to help it to do work, but that's optional.
+a process can ask the OS to spin up another process to run different tasks. when this happens, different parts of memory are allocated for the new process. if two processes need to talk, they can do so by using inter process communication. many application are designed to work this way so that if a worker gets unresponsive, it can be restarted without stopping other processes which are running different parts of the application.
+
+Browser Architecture
+how is a web browser built using processes and threads? it could be one process with many different threads or many different processes with a few threads communicating over IPC. we will study chrome's architecture.
+at the top is the browser process coordinating with other processes that take care of different parts of the application. for the renderer process, multiple processes are created and assigned to each tab. now chrome tries to give each site its own process rather than giving each process to each tab.
+
+Which process controls what?
+1. browser - controls "chrome" part of the application including address bar, bookmarks, back and forward button. also handles the invisible, priviliged parts of a web browser such as network requests and file access.
+2. renderer - controls anything inside of the tab where a website is displayed.
+3. plugin - controls any plugins used by the website, for example grammarly
+4. gpu - handles gpu tasks in isolation from other processes. it is separated into different process because gpu's handles requests from multiple apps and draw them in the same surface.
+there are some more processes like the extension process and utility process.
+
+Benefits of multi process architecture 
+if one tab becomes unresponsive, then you can close that tab and move on while keeping other tabs alive. if all tabs were running on one process, when one tab becomes unresponsive, all the tabs are unresponsive.
+another benefit of separating the browser's work into multiple processes is security and sandboxing. the browser can sandbox certain processes from certain features. for eg. chrome browser restricts arbitrary file acceess for processes that handle arbitrary user input like the renderer process.
+because processes have their own private memory space, they often contain copies of common infrastructure(like v8 which is chrome's js engine). this means more memory usage as they can't be shared the way they would be if they were threads inside the same process. in order to save memory, chrome puts a limit on how many processes it can spin up. the limit varies depending on how much memory and cpu power your device has, but when that limit is reached, it starts to run multiple tabs from the same site in one process.

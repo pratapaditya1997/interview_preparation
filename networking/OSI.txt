@@ -1,0 +1,76 @@
+OSI - open systems interconnection
+7 layer architecture with each layer having specific functionality to perform
+
+application        --|
+presentation         |-- software layers
+session            --|
+transport
+network            --|
+data link            |-- hardware layers
+physical           --|
+
+1. Physical Layer
+responsible for actual physical connection between devices. responsible for transmitting individual bits from one node to next. sends these received bits to data link layer, which will put the frame back together.
+examples - hub, repeater, modem
+functions of this layer:
+    bit syncronization - provides syncronization of the bits by providing a clock.
+    bit rate control - defines transmission rate ie. number of bits sent per second
+    physical topologies - bus, star or mesh topology
+    transmission mode - simplex, half-duplex, full-duplex
+
+2. Data Link Layer
+responsible for node to node delivery of the message. main function of this layer is to make sure data transfer is error-free from one node to another, over the physical layer. when a packet arrives in a network, it is the responsibility of DLL to transmit it to the host using its MAC address. DLL is divided into two layers - Logical Link Control, Media Access Control
+packet in DLL is referred as frame. DLL is handled by the NIC (Network Interface Card) and device drivers of host machines. Switch and Bridge are DLL devices.
+Functions of DLL:
+    framing - attaching special bit patterns to the beginning and end of the frame.
+    physical addressing - after creating frames, DLL adds physical addresses (MAC address) of sender/or reeceiver in the header of each frame.
+    error control - DLL provides the mechanism of error control in which it detects and retransmits damaged or lost frames.
+    access control - when a single communication channel is shared by multiple devices, MAC sub-layer of data link layer helps to determine which device has control over the channel at a given time.
+
+3. Network Layer
+works for transmission of data from one host to other located in different networks. it also takes care of packet routing ie. selection of shortest path to transmit the packet, from the number of routes available. sender and receiver's IP address are placed in the header by the network layer.
+This layer is implemented by networking devices such as routers.
+Functions of network layer:
+    routing
+    logical addressing - sender/receiver's IP address distinguishes each device uniquely.
+
+4. Transport Layer
+provides services to application layer and takes services from the network layer. It is responsible for the end-to-end delivery of the complete message. this layer also provides the acknowledgement of the successful data transmission and re-transmits the data if an error is found.
+Transport layer is managed by the Operating System. It is part of OS and communicates with the Application layer by making System calls. it is called heart of OSI model.
+
+Sender's side
+    transport layer receives the formatted data from the upper layers, performs Segmentation and also implements Flow & Error Control to ensure proper data transmission. It also adds source and destination port number in its header and forwards the segmented data to the network layer.
+
+Receiver's side
+    reads the port number from its header and forwards the data which it has received to the respective application. it also performs sequencing and re-assembling of the segmented data.
+
+Functions of this layer:
+    segmentation & re-assembly
+    service point addressing
+
+services provided by transport layer:
+    a. connection oriented services - in this type of transmission, receiver sends an acknowledgement, back to the source after a packet or group of packet is received. this is reliable and secure.
+    b. connection less service - receiver doesn't acknowledge. much faster communication between devices.
+
+5. Session Layer
+this layer is responsible for establishment of connection, maintenance of sessions, authentication and also ensures security.
+these three layers (session, presentation, application) are integrated as a single layer in TCP/IP model as "application layer"
+Functions:
+    session establishment, maintenance
+    syncronization - allows a process to add checkpoints which are called as syncronization points into the data. these points help to identify the error so that data is re-syncronized properly.
+    dialog controller - this allows two systems to start communication with each other in half-duplex or full-duplex.
+
+6. Presentation Layer
+also called translation layer. data from application layer is extracted here and manipulated as per the required format to transmit over the network.
+Functions:
+    translation - for example, ASCII to EBCDIC
+    encryption/decryption
+    compression
+
+7. Application Layer
+these applications produce the data, which has to be transferred over the network. this layer also serves as window for the application services to access the network and for displaying the received information to the user.
+Functions:
+    network virtual terminal
+    file transfer access and management
+    mail services
+    directory services

@@ -1,0 +1,69 @@
+process of minimizing redundancy from a set of relations. redundancy in relation may cause insertion, deletion and updation anomalies. normal forms are used to eliminate or reduce redundancy in database tables.
+
+note: before this, we need to revise what prime attributes are
+prime attributes - attributes of all the candidate keys
+
+---------------- 1NF ----------------------
+a relation is in 1NF if - 
+    every attribute is single valued attribute ie. it is not composite or multi-valued attribute
+
+eg. this table is not in 1NF as courses is multi-valued attribute in it
+ID  Name   Courses
+------------------
+1   A      c1, c2
+2   E      c3
+3   M      c2, c3
+
+
+---------------- 2NF ----------------------
+a relation is in 2NF if - 
+    it is in 1NF
+    it does not contain any partial dependency
+partial dependency - if the proper subset of candidate key determines the non-prime attributes, it is called partial-dependency
+eg.
+
+stud_no     course_no     course_fee
+------------------------------------
+1           c1            100
+2           c2            200
+1           c1            100
+4           c2            200
+
+in this table, course_fee is a non-prime attribute as it does not belong to the candidate key {stud_no, course_no}, but course_no -> course_fee is a depedency. so this table is nott in 2NF
+
+2NF tries to reduce the redundant data getting stored in memory. eg. if there are 100 students taking course c1, we dont need to store its fee for all of them, instead we can store it once in second table as c1 course fee fixed
+
+---------------- 3NF ----------------------
+a relation is in 3NF if -
+    it is in 2NF
+    there is no transitive dependency for non-prime attributes
+transitive dependency - if A->B and B->C then A->C is called transitive dependency
+
+eg. in the below student table
+no    name        state      country   age
+-------------------------------------------
+1     ram         haryana    india     20
+2     ram         punjab     india     19
+3     suresh      punjab     india     21
+
+in this table, candidate key is {no}
+also, no->state & state->country , so non-prime attribute (country) is transitively dependent on (no)
+we will decompose this table into Student(no,name,state,age) & State_Country(state, country)
+
+
+---------------- BCNF ----------------------
+Boyce-Codd Normal Form
+a relation is said to be in BCNF if - 
+    it is in 3NF
+    for every FD, LHS is super key
+
+
+--------------------------------------------
+Key Points
+- BCNF is free from redundancy
+- if a relation is in BCNF, then 3NF is also satisfied
+- if all attributes of relation are prime attribute, then the relation is always in 3NF
+- a relation in RDBMS is always and at-least in 1NF
+- every binary relation is always in BCNF
+- if a relation has only singleton candidate keys, then the relation is always in 2NF (because no partial dependency is possible)
+- sometimes going for BCNF form may not preserve FDs. In that case go for BCNF only if the lost FDs are not required, else normalize till 3NF only.

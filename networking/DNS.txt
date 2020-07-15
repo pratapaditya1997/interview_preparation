@@ -1,0 +1,29 @@
+DNS - Domain Name System is the phonebook of the internet. DNS translates domain names to IP addresses so browsers can load internet resources.
+
+Process of DNS resolution involves converting a hostname (eg. www.example.com) into a computer friendly IP address (eg. 192.168.1.1) An IP address is given to each device on the internet, and that address is necessary to find the appropriate internet device.
+
+there are 4 DNS servers involved in loading a webpage
+- DNS recursor : server designed to receive queries from client machines through applications such as web browsers. typically, recursor is then responsible for making additional requests in order to satisfy the client's DNS query.
+
+- root nameserver : first step in translating host name into IP address. It can be thought of like an index in a library that points to a different rack of books , typically it serves as a reference to other more specific locations.
+
+- TLD nameserver : top level domain can be thought of as a specific rack of books in library. this nameserver is the next step in the search of IP, and it hosts the last portion of a hostname (eg. in example.com, the TLD server is com)
+
+- Authoritative nameserver : this final nameserver can be thought of as a particular dictionary on a rack of books, in which a specific name can be translated into its definition. this is the last step in the nameserver query. If the authoritative server has access to the requested record, it will return the IP address for that back to DNS recursor that made the initial request.
+
+
+Steps in DNS lookup
+1. user types 'example.com' into web browser and this query is received by a DNS recursive resolver
+2. the resolver then queries the DNS root nameserver(.)
+3. the root then responds to the resolver with the address of TLD DNS server (such as .com or .net) which stores the information for its domains. in our case, request is pointed towards the .com TLD
+4. the resolver then makes a request to .com TLD
+5. the TLD server then responds with the IP address of the domain's authoritative nameserver, example.com
+6. lastly, the recursive resolver sends a query to the domain's authoritative nameserver
+7. the IP address for 'example.com' is then returned to the recursive resolver from the domain's nameserver
+8. the DNS resolver then responds to the web browser with the IP address of the domain requested initially.
+
+
+DNS Caching
+temporarily storing the data in a location that results in improvements in performance and reliability for data requests. DNS caching involves storing data closer to the requesting client. 
+1. Browser DNS Caching : modern web browsers cache the DNS records for a set amount of time.
+2. OS Level DNS Caching : this is the last stop before DNS query leaves our machine. the process inside our OS that is designed to handle this query is called "stub resolver" or DNS client 

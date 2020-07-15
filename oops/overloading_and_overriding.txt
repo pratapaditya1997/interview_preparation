@@ -1,0 +1,30 @@
+method overloading is resolved during compile time, while method overriding is resolved at runtime.
+private, static, and final method cannot be overridden in java but can still be overloaded.
+for overriding, both name and signature of the method must remain same, but for in overloading method, the signature must be different.
+most important, overloaded methods are resolved using static binding while the call to overridden method is resolved using dynamic binding.
+
+OVERLOADING
+you can also overload constructor in java.
+we can overload static, private and final method in java.
+
+OVERRIDING
+you first need to create a child class which extends parent. original method needs to be defined inside interface or base class, which can be abstract as well.
+you cannot override static method in java because they are associated with class rather than object and resolved and bonded during compile time.
+for best practice, always use @Override annotation while overriding method from an abstract class or interface.
+Rules of overriding in java:
+- method signature must be same and also return type should be same too.
+- overriding method cannot throw higher Exception than original method. if original method throws IOException than overriding method method can not throw super class of IOException eg. Exception but it can throw any subclass of IOException. this rule applies to only checked Exceptions in java, overridden method is free to throw any unchecked Exception.
+- overriding method can not reduce accessibility of original method, if original method is public than overriding method can not make it protected or private.
+- we are allowed to change the return type in the overriding method as long as the new return type is a subtype of the declared return type of the original method.
+
+Some differences points:
+- in overloading method signature changes, while in overriding it remains the same
+- you can overload a method in same class but overriding can be only done in subclass
+- you cannot override static, final and private methods but you can overload them
+- overloaded method is bonded by static binding and overridden methods are subject to dynamic binding
+- overloaded method do not have any restriction regarding checked Exceptions and you are free to modify throws clause as per your need
+
+
+Some Interview Questions
+Q) Can you overload main method ?
+A) yes, you can overload main method but only method with signature public static void main(String[] args) will be used when your class is invoked by jvm

@@ -1,0 +1,28 @@
+TCP
+- connection oriented protocol. it means that communicating devices should establish a connection before transmitting data and should close the connection after transmitting the data.
+- tcp is reliable as it guarantees delivery of data to the destination router.
+- tcp provides extensive error checking mechanisms.
+- sequencing of data is a feature of tcp. this means that packets arrive in-order at the receiver.
+- comparatively slower than UDP
+- retransmission of lost packets is possible in TCP, but not in UDP.
+- tcp is heavy weight
+
+UDP
+- datagram oriented protocol. there is no overhead for opening a connection. UDP is efficient for broadcast and multicast type of transmission.
+- delivery of data to the destination cannot be guaranteed in UDP.
+- UDP has only the basic error checking mechanism using checksums.
+- no sequencing of data. If ordering is required, it has to be managed by the application layer.
+- udp is faster, simpler.
+- no retransmission of lost packets.
+- lightweight
+- supports broadcasting
+
+Disadvantages of UDP
+- a packet may not be delivered or delivered twice, it may be delivered out of order, so we get no indication
+- UDP has no congestion control & flow control.
+
+Applications of UDP
+- largely used by time sensitive applications
+- used in voice over IP, online games
+- compatible with packet broadcasts for sending all over the network and for multicasting sending.
+- good for small transactions like DNS lookup

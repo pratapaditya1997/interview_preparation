@@ -1,0 +1,47 @@
+Q) What is Multi-programming ?
+- computer running more than 1 program at once (like running excel and firefox simul)
+- main idea of multiprogramming is to maximize the cpu time
+- in non-multi programmed system, as soon as one job leaves the cpu and goes for other task (like IO) the cpu becomes idle and keeeps waiting until this job comes back and resumes its execution. so cpu remains free for all this while.
+- in multiprogrammed system, as soon as one job goes for IO task, the os interrupts the job, chooses another job from the job pool, gives cpu to this new job and starts its execution. in this way, cpu time is not wasted.
+
+
+Q) What is Multi-processing ?
+- computer using more than one cpu core at a time
+- in uni-processor system, only one process executes at a time, multi-processing is the use of 2 or more cpu's within a single computer
+- multiple processes can be executed at a time. these multiple processes share the computer bus, sometimes the clock, memory and peripheral devices etc
+- Main advantage is to get more work done in a shorter period of time.
+
+
+Q) What is Multi-tasking ?
+- refers to execution of multiple tasks at a time. in modern OS we are able to play MP3 music, edit docs in word, surf chrome all at the same time
+- logical extension of multi-programming
+- major diff is multi-programming works solely on the concept of context switching whereas multi-tasking is based on time sharing along with the concept of context switching
+- in time sharing system, each process is assigned some quantum of time (5ns or something) . so basically context switch is occuring but it is occuring so fast that the user is able to interact with each program separately while it is running.
+
+
+Q) What is the difference between Multi-programming vs Multi-tasking ?
+concept of context switching is used ------ concept of context switching and time sharing is used
+OS simply switches to another job when current job needs to wait ----- switching happens when either allowed time expires or when current process needs to wait
+increases CPU utilization by organising jobs ----- increases CPU utilization, and also increases responsiveness
+idea is to reduce CPU idle time ----- idea is to extend CPU utilization by increasing responsiveness
+
+Q) Why do we need RAM when we have secondary memory?
+lets take an example - there is a shop and a warehouse, if a person needs a product he will obviously go to the shop, because of low access time. Similarly, RAM is much faster to read from and write to than other kinds of storage in a computer. So major things like application programs, current processes and data in current use are kept there.
+
+Q) What is the difference between 32 bit and 64 bit OS?
+a 32 bit system can access 2^32 memory addresses ie. 4GB of RAM or physical memory. 
+a 64 bit system can access 2^64 memory addresses ie. (16 Exa-bytes) 18 quintillion bytes of RAM.
+Another major difference is the number of calculation per second they can perform, which affects the speed at which they can complete tasks. 64 bit processors can come in dual core, quad core, six core, eight core versions. these multiple cores allow for an increased number of calculation per second.
+
+Q) What is REST?
+REST - Representational State Transfer. It relies on a stateless, client-server, cacheable communications protocol - virtually in all cases, HTTP protocol is used.
+REST is an architecture style for designing networked applications.
+
+Q) How does 'sudo' command work?
+What sudo does is
+    - read and parse /etc/sudoers , look up the invoking user and its permissions
+    - ask the invoking user for password
+    - create a child process in which it calls setuid() to change target user
+    - execute a shell or the command given as arguments in this child process
+if we run 'ls -l /usr/bin/sudo'
+output is '-rwsr-xr-x' here fourth column ie. 's'  tells us that setUID bit is set. This bit has significant meaning - when a binary with SetUID bit is set is executed, it doesn't run with the user ID of the invoking user, but the ID of the binary's owner(in this case root)

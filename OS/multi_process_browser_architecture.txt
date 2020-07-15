@@ -1,0 +1,20 @@
+source - [https://blog.chromium.org/2008/09/multi-process-architecture.html]
+chrome and many other browsers use multi-process based architecture. they use many OS processes to keep web sites separate from each other and rest of your computer.
+
+1. why use multiple processes in a browser?
+in earlier days, web pages were simple and had little or no active code in them. it made sense to render all the pages you visited in the same process, to keep resource usage low. today, we've seen major shift towards active web content, ranging from pages with lots of javascript to full blown web apps like gmail. large parts of these apps runs in the browser, just like normal applications run on an OS. so, just like an OS, the browser also must keep these apps separate from each other.
+also, parts of browser that render html, js and css have become extraordinarily complex over time. these rendering engines frequently havee bugs as they continue to evolve, and some of these bugs may cause the rendering engine to occasionally crash. so putting everything in one process face real challenges for robustness, responsiveness and security. multi process architecture ensures that a rendering engine crash in one web app wont effect the browser or other web apps. It means the OS can run web apps in parallel to increase their responsiveness, and it means the browser itself won't lock up if a particular web app or plug in stops responding.
+
+2. what goes in each process?
+chrome creates three types of processes - browser, renderers and plugins
+
+a) browser - there is only 1 browser process, which manages the tabs, windows, and chrome of the browser. this process also handles all the interactions with the disk, network, userr input and display, but it makes no attempt to parse or render any content from the web.
+
+b) renderers - the browser process creates many renderer processes, each responsible for rendering web pages. the renderer process contain all the complex logic for handling html, js, css and so on. each renderer process runs in a sandbox, which means it has almost no direct access to your disk, network or display. all interactions with web apps, including user input events and screen painting must go through browser process. this lets the browser process monitor the renderers for suspicious activity, killing them if it suspects an exploit has occured.
+
+c) plugins - browser process creates one process for each type of plugin that is in use. these processes just contain the plugin themselves, along with some glue code to let them interact with the browser and the renderers.
+
+3. when should the browser create process?
+once chrome has created its browser process, it will generally create one renderer process for each instance of a web site you visit. you can think of this as using a different process for each tab in the browser, but allowing two tabs to share a process if they are related to each other and are showing the same site. this lets the pages in these tabs communicate via js and share cached objects.
+there are few caveats to this approach. your computer would start to slow down if chrome created too many processes, so there is a limit on the number of renderer processes that can be created (ie 20 in most cases). once this limit is reached, chrome will start re-using the existing renderer process for new tabs. thus it is possible that the same renderer process could be used for more than one web site.
+for each type of plugin, chrome will create a plugin process when you visit a page that uses it. a short time after you close all pages using a particular plugin, we will destroy its process.

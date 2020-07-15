@@ -1,0 +1,20 @@
+transaction - a single logical unit of work which accesses and possibly modifies the contents of a database. It entails one or more database access operations.
+in order to maintain consistency in a database, before and after the transaction, certain properties are followed. these are called ACID properties.
+
+1. Atomicity (A)
+known as 'all or nothing rule'
+this means either the transaction takes place fully or doesn't happen at all. there is no midway. it involves two operations:
+rollback (abort) - changes made in transaction are not visible in the database.
+commit - if transaction commits, changes made are visible
+eg. transfer money from X to Y
+
+2. Consistency (C)
+this means that integrity constraints must be maintained so that database is consistent before and after the transaction. refers to the correctness of a database. 
+eg. money before transaction 500(X) + 200(Y) = 700
+    money after transaction 400(X) + 300(Y) = 700
+
+3. Isolation (I)
+this property ensures that multiple transactions can occur concurrently without leading to the inconsistency of database state. transactions occur independently without interference. changes occuring in 1 transaction will not be visible to any other transaction until that change has been committed. this property ensures that the execution of transactions concurrently will result in a state that is equivalent to a state achieved if these were executed in some serial order.
+
+4. Durability
+this ensures that once the transaction has completed execution, the updates and modifications to the database are stored in and written to the disk and they persist even if a system failure occurs.

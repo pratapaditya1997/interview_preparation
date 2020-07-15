@@ -1,0 +1,30 @@
+process by which java programs perform automatic memory management. java programs compile to bytecode that can be run on a JVM. when java programs run on the JVM, objects are created on the heap, which is a portion of memory dedicated to the program. eventually some objects will no longer be needed. the garbage collector finds these unused objects and deletes them to free up memory.
+
+GC implementation lives in the JVM. each JVM can implement the GC however it pleases; the only requirement is that it meets the JVM specification. we will discuss oracle's JVM HotSpot's implementation.
+
+
+In the 1st step, unreferenced objects are identified and marked as ready for garbage collection. In the 2nd step, marked objects are deleted. Memory can be compacted after the garbage collector deletes objects, so remaining objects are in a contiguous block at the start of the heap. The compaction process makes it easier to allocate memory to new objects sequentially after the block of memory allocated to existing objects.
+
+All hotspots' garbage collectors implement a generational GC strategy that categorizes objects by age. the rationale behind this is that most objects are short-lived and will be ready for garbage collection soon after creation.
+
+Heap is divided into three sections - young generation, old generation and permanent generation.
+1. Young generation
+    newly created objects. it is further divided into an eden space, where all new objects start, and two survivor spaces, where objects are moved from eden after surviving one garbage collection cycle. when objects are collected from young gen. it is called a minor garbage collection event.
+
+2. Old generation
+    objects that are long-lived are eventually moved from the young generation to the Old generation. when objects are collected from the old generation, it is a major garbage collectione event.
+
+3. Permanent generation
+    metadata such as classes and methods are stored here. Classes that are no longer in use may be garbage collected from the Permanent gen.
+
+During a full GC event, unused objects in all generations are garbage collected.
+
+HotSpot has four garbage collectors -
+1. Serial - all garbage collection events are conducted serially in one thread. Compaction is execution after each garbage collection
+2. Parallel - multiple threads are used for minor garbage collection. A single thread is used for major garbage collection and olg generation compaction
+3. CMS (Concurrent mark sweep) - multiple threads are used for minor garbage collection using the same algorithm as parallel. Major garbage collection is multi-threaded but CMS runs concurrently alongside application process to minimize the "stop the world" events. no compaction is performed.
+4. G1 (Garbage first) - the newest garbage collector is intended as a replacement for CMS. It is parallel and concurrent like CMS, but it works quite differently under the hood compared to the old garbage collectors.
+
+Best practices for java garbage collection, how to tune your GC - 
+    one of the most important points to understand about garbage collection in java is that it is non-deterministic, and there is no way to predict when garbage collection will occur at runtime.
+    best way to tune java GC is setting flags on the JVM. flags can adjust the garbage collector to be used (eg. Serial, G1, etc.), the initial and maximum size of the heap, the size of the heap sections and more.

@@ -1,0 +1,14 @@
+1. arrays are co-variant & generics are invariant in java.
+    co-variance means if X is subtype of Y then X[] will also be a subtype of Y[]
+    invariance means irrespective of X being subtype of Y or not, List<X> will not be subtype of List<Y>
+
+2. Why are generics invariant ?
+    List<Dog> is not a List<Animal>. Consider what you can do with a List<Animal> , you can simply add any animal to it.. including a cat. Now, logically this is wrong.
+
+3. when an instance of a class is creating, all initialzer blocks are executed before constructor. it doesn't matter if the initializer block is before or after the constructor.
+
+4. use @Override annotation when overriding a method. putting @Override above method makes compiler verify if this method actually overrides a super class or interface method or not. if not then compiler error is thrown. using @Override saves a lot of debugging effort.
+
+5. Arrays.asList(x) returns fixed size list which is unmodifiable.
+   eg. List<Integer> digits = Arrays.asList(1);
+       digits.add(2); // will throw runtime exception

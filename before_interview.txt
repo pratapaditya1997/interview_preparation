@@ -1,0 +1,24 @@
+These are the questions which I should revisit once before the interviews
+
+General
+1. Design LRU Cache - https://leetcode.com/problems/lru-cache/
+2. Stock buy and sell (4 variants on leetcode) - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/ 
+
+Linked Lists
+1. remove nth node from end of list - https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+2. merge two sorted lists - recursively - https://leetcode.com/problems/merge-two-sorted-lists/
+3. reverse nodes in k-group - https://leetcode.com/problems/reverse-nodes-in-k-group/
+4. reverse linked list nodes between m & n - https://leetcode.com/problems/reverse-linked-list-ii/
+5. deep copy list with random pointers - https://leetcode.com/problems/copy-list-with-random-pointer/
+6. solution intuition for check if linked list has a cycle - https://leetcode.com/problems/linked-list-cycle/solution/
+7. reverse linked list recursively - https://leetcode.com/problems/reverse-linked-list/
+
+Trie
+1. implement trie - https://leetcode.com/problems/implement-trie-prefix-tree/
+
+Heap
+1. find running median - https://leetcode.com/problems/find-median-from-data-stream/
+
+Array
+1. find the duplicate number - https://leetcode.com/problems/find-the-duplicate-number/
+ 

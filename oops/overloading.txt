@@ -1,0 +1,37 @@
+C++ allows multiple functions to have the same name:
+void printMe(string s);
+void printMe(int i);
+void printMe(string s, int i);
+
+Function Signature
+A function's signature includes the function's name and the number, order and type of its formal parameters.
+two overloaded functions must not have the same signature
+the return value is not part of a function's signature
+
+Resolving overloaded functions
+1. Exact Match: call the function with a parameter list that matches the argument list exactly in number, order and type
+2. Match using type conversion: call a function if there exist type converters which can convert some of the arguments in the function call to match the formal parameters in a function definition
+    number of arguments and formal parameters must be equal.
+    automatic type converters are int to float, char to int, float to int
+    converters can be programmer-defined involving programmer-defined objects
+
+rule 1 has precedence
+
+Some questions
+Q) can we overload main() method?
+A) yes, we can overload main() method. A class can have any number of main() methods but execution starts from `public static void main(String args[])`
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+JAVA best practices
+- dont overload methods which accepts same no of parameter with similar types
+- use radically different types while overloading method in java
+- beware of autoboxing while overloading
+    classic example of this is ArrayList's remove() method, which is overloaded to accept index as well as an Object. so, when we store Integer in ArrayList and call remove() method, it's hard to find out which remove() method will be called.
+
+Constructor Overloading
+- similar to method overloading
+- you can call overloaded constructor by using this() keyword
+- overloaded constructor must be called from another constructor only
+- make sure you add no argument default constructor because compiler will not add it if you have added any constructor
+- if an overloaded constructor is called, it must be first line of constructor 
+- best practice is to have 1 primary constructor and let overloaded constructors call that. in this way your init code will be centralized and easier to maintain and test
