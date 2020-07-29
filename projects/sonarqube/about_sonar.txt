@@ -1,0 +1,7 @@
+What is SonarQube?
+sonarqube is one of the leading open source tool for static code analysis, it helps us to write cleaner and safer code and provide functionality to ensure source code scanning for
+- reliability: catch tricky bugs to prevent undefined behavior from impacting end-users
+- security: sonarqube helps you find and track the potential security vulnerable code. eg. SQL injection, hard-coded passwords and badly managed errors
+- maintainability: helps to detect potential difficult to maintain or duplicate code. eg. duplicate code, uncovered code by unit tests and too complex code
+
+we have to set quality gates and quality profile for our services
