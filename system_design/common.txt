@@ -1,0 +1,5 @@
+Q) How to store images in a system? Is storing them in DB good?
+- better to store images in file systems and store their file path only in the database.
+- but there may be situations where we need ACID compliance, then storing images in database is required.
+- generally it is better to avoid saving images and BLOBs in database. Also, you never want to serve images from DB, images should be served from a CDN.
+- can utilise distributed file systems like GFS and HDFS
